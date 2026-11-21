@@ -119,12 +119,6 @@
     .timeline .what { font-weight: 600; }
     .timeline .where { font-size: 14.5px; color: #33363b; }
 
-    /* ---------- Skills ---------- */
-    .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
-    .skill-row { padding: 20px 24px; border-bottom: 1px solid var(--line); }
-    .skill-row:nth-child(odd) { border-right: 1px solid var(--line); }
-    .skill-row:nth-last-child(-n+2) { border-bottom: none; }
-    .skill-row h4 { font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
 
     /* ---------- Contact ---------- */
     .contact h2 { margin-bottom: 16px; }
@@ -137,11 +131,41 @@
       .project { padding: 24px; }
       .case { grid-template-columns: 1fr; gap: 16px; }
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
-      .skills { grid-template-columns: 1fr; }
-      .skill-row:nth-child(odd) { border-right: none; }
-      .skill-row:nth-last-child(2) { border-bottom: 1px solid var(--line); }
     }
 
+
+    /* ---------- Skills (bento) ---------- */
+    .skill-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -16px 0 24px; }
+    .sf-hint { font-size: 13px; color: var(--muted); margin-right: 4px; }
+    .skill-filter button { font: inherit; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; transition: all .2s ease; }
+    .skill-filter button:hover { color: var(--ink); border-color: #cfccc4; }
+    .skill-filter button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; overflow: hidden; transition: border-color .3s, box-shadow .3s, transform .3s; }
+    .skill-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+      background: radial-gradient(300px circle at var(--cx, 50%) var(--cy, 0%), rgba(29,92,77,.09), transparent 70%); }
+    .skill-card:hover { border-color: #d6d3cc; box-shadow: 0 18px 40px -28px rgba(0,0,0,.35); }
+    .skill-card:hover::before { opacity: 1; }
+    .sc-wide { grid-column: span 2; }
+    .sc-head { display: flex; gap: 14px; align-items: flex-start; }
+    .sc-icon { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; transition: transform .3s ease; }
+    .skill-card:hover .sc-icon { transform: rotate(-6deg) scale(1.06); }
+    .sc-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .sc-head h3 { font-size: 17px; letter-spacing: -0.01em; }
+    .sc-head p { font-size: 14px; color: var(--muted); margin-top: 2px; }
+    .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .chip { font-size: 13.5px; font-weight: 500; padding: 6px 12px; border-radius: 8px; background: #f3f2ee; color: #2c2f33; border: 1px solid transparent; transition: all .25s ease; cursor: default; }
+    .chip:hover { background: var(--accent-soft); color: var(--accent); transform: translateY(-2px); }
+    .bento.filtering .chip { opacity: .28; filter: grayscale(1); }
+    .bento.filtering .chip.hit { opacity: 1; filter: none; background: var(--accent-soft); color: var(--accent); border-color: #b9d8cc; transform: translateY(-2px); }
+    .marquee { margin-top: 48px; overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+    .mq-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+    .marquee:hover .mq-track { animation-play-state: paused; }
+    .mq-track span { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #c9c6be; padding: 0 22px; white-space: nowrap; }
+    .mq-track span::after { content: "✦"; font-size: 12px; color: var(--accent); margin-left: 44px; vertical-align: 4px; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @media (max-width: 760px) { .bento { grid-template-columns: 1fr; } .sc-wide { grid-column: auto; } }
     /* ================= Motion ================= */
     @keyframes rise { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(29,92,77,.45); } 70% { box-shadow: 0 0 0 9px rgba(29,92,77,0); } 100% { box-shadow: 0 0 0 0 rgba(29,92,77,0); } }
@@ -213,8 +237,6 @@
     .timeline li::before { transition: background .3s, transform .3s; }
     .timeline li:hover::before { background: var(--accent); transform: scale(1.2); }
 
-    .skill-row { transition: background .25s ease; }
-    .skill-row:hover { background: #fbfbf9; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -425,15 +447,68 @@
       <div class="wrap">
         <p class="label">Skills</p>
         <h2>What I work with</h2>
-        <div class="skills">
-          <div class="skill-row"><h4>Frontend</h4><p>TypeScript · React · Next.js · Tailwind CSS · TanStack Query</p></div>
-          <div class="skill-row"><h4>Backend</h4><p>Node.js · NestJS · Express · REST APIs · JWT auth · RBAC</p></div>
-          <div class="skill-row"><h4>Data</h4><p>PostgreSQL · Prisma · ERD design</p></div>
-          <div class="skill-row"><h4>Tools</h4><p>Git · Docker · Vitest · Figma · Jira · draw.io</p></div>
-          <div class="skill-row"><h4>Working style</h4><p>Specs and decision logs before code · AI-assisted development with manual verification</p></div>
-          <div class="skill-row"><h4>Languages</h4><p>Thai (native) · English (IELTS 6.5)</p></div>
+        <div class="skill-filter" role="tablist" aria-label="Show skills used in a project">
+          <span class="sf-hint">Used in:</span>
+          <button class="on" data-f="all">All</button>
+          <button data-f="p">PetWell</button>
+          <button data-f="b">Bloom</button>
+          <button data-f="a">AumStocks</button>
+        </div>
+        <div class="bento">
+          <article class="skill-card sc-wide">
+            <div class="sc-head"><span class="sc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M7 21h10"/></svg></span><div><h3>Frontend</h3><p>Interfaces people actually enjoy using</p></div></div>
+            <ul class="chips">
+              <li class="chip" data-p="p b a">TypeScript</li>
+              <li class="chip" data-p="p b a">React</li>
+              <li class="chip" data-p="p b a">Next.js</li>
+              <li class="chip" data-p="p b a">Tailwind CSS</li>
+              <li class="chip" data-p="b a">TanStack Query</li>
+              <li class="chip" data-p="p b a">Zod</li>
+            </ul>
+          </article>
+          <article class="skill-card ">
+            <div class="sc-head"><span class="sc-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/></svg></span><div><h3>Backend &amp; APIs</h3><p>Secure endpoints with role-based access</p></div></div>
+            <ul class="chips">
+              <li class="chip" data-p="p b a">Node.js</li>
+              <li class="chip" data-p="p a">NestJS</li>
+              <li class="chip" data-p="p b a">REST APIs</li>
+              <li class="chip" data-p="p a">JWT auth</li>
+              <li class="chip" data-p="p a">RBAC</li>
+              <li class="chip" data-p="b">Better Auth</li>
+              <li class="chip" data-p="">Express</li>
+            </ul>
+          </article>
+          <article class="skill-card ">
+            <div class="sc-head"><span class="sc-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg></span><div><h3>Data</h3><p>Schemas designed before the first line of code</p></div></div>
+            <ul class="chips">
+              <li class="chip" data-p="p b a">PostgreSQL</li>
+              <li class="chip" data-p="p b a">Prisma</li>
+              <li class="chip" data-p="p a">ERD design</li>
+              <li class="chip" data-p="p a">Transactions</li>
+            </ul>
+          </article>
+          <article class="skill-card sc-wide">
+            <div class="sc-head"><span class="sc-icon"><svg viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L3.5 17.5l3 3 5.7-5.7a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.5-.5-.5-2.5z"/></svg></span><div><h3>Tools &amp; delivery</h3><p>From local tests to a live deploy</p></div></div>
+            <ul class="chips">
+              <li class="chip" data-p="p b a">Git &amp; GitHub</li>
+              <li class="chip" data-p="p b">Vitest</li>
+              <li class="chip" data-p="p">Cloudinary</li>
+              <li class="chip" data-p="p b a">Vercel</li>
+              <li class="chip" data-p="">Docker</li>
+              <li class="chip" data-p="">Figma</li>
+              <li class="chip" data-p="">Jira</li>
+              <li class="chip" data-p="">draw.io</li>
+            </ul>
+          </article>
+          <article class="skill-card sc-text sc-wide">
+            <div class="sc-head"><span class="sc-icon"><svg viewBox="0 0 24 24"><path d="M9 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9z"/><path d="M9 4v5H4M8 13h8M8 17h5"/></svg></span><div><h3>How I work</h3><p>Spec, ERD and decision log first, then build section by section with AI and verify every flow by hand.</p></div></div>
+          </article>
+          <article class="skill-card sc-text">
+            <div class="sc-head"><span class="sc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span><div><h3>Languages</h3><p>Thai — native<br>English — professional (IELTS 6.5)</p></div></div>
+          </article>
         </div>
       </div>
+      <div class="marquee" aria-hidden="true"><div class="mq-track"><span>TypeScript</span><span>React</span><span>Next.js</span><span>NestJS</span><span>Node.js</span><span>PostgreSQL</span><span>Prisma</span><span>Tailwind CSS</span><span>REST APIs</span><span>JWT</span><span>RBAC</span><span>Vitest</span><span>Git</span><span>Vercel</span><span>Zod</span><span>TanStack Query</span><span>TypeScript</span><span>React</span><span>Next.js</span><span>NestJS</span><span>Node.js</span><span>PostgreSQL</span><span>Prisma</span><span>Tailwind CSS</span><span>REST APIs</span><span>JWT</span><span>RBAC</span><span>Vitest</span><span>Git</span><span>Vercel</span><span>Zod</span><span>TanStack Query</span></div></div>
     </section>
 
     <!-- ===== Contact ===== -->
@@ -469,7 +544,7 @@
       ['.project', 0.08],
       ['.about-text p', 0.1],
       ['.timeline li', 0.12],
-      ['.skill-row', 0.06],
+      ['.skill-card', 0.07], ['.skill-filter', 0],
       ['.contact p, .contact .actions', 0.1]
     ];
     var targets = [];
@@ -499,6 +574,26 @@
       links.forEach(function (a, i) { a.classList.toggle('active', i === current); });
     }
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Skills: filter chips by project
+    var bento = document.querySelector('.bento');
+    document.querySelectorAll('.skill-filter button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.skill-filter button').forEach(function (b) { b.classList.toggle('on', b === btn); });
+        var f = btn.getAttribute('data-f');
+        bento.classList.toggle('filtering', f !== 'all');
+        bento.querySelectorAll('.chip').forEach(function (c) {
+          c.classList.toggle('hit', f !== 'all' && (' ' + c.getAttribute('data-p') + ' ').indexOf(' ' + f + ' ') > -1);
+        });
+      });
+    });
+    // Skills: spotlight follows the cursor inside each card
+    document.querySelectorAll('.skill-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--cx', (e.clientX - r.left) + 'px'); card.style.setProperty('--cy', (e.clientY - r.top) + 'px');
+      });
+    });
 
     if (reduce) return;
 
