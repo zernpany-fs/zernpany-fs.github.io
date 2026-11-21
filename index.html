@@ -97,6 +97,13 @@
     .links a:hover { text-decoration: underline; }
     .links .note { color: var(--muted); font-weight: 400; }
 
+    .preview { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 24px; background: #f6f5f1; text-decoration: none; }
+    .preview .bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+    .preview .bar span { width: 9px; height: 9px; border-radius: 50%; background: #dcdad4; }
+    .preview .bar em { font-style: normal; font-size: 12px; color: var(--muted); margin-left: 8px; font-family: "JetBrains Mono", ui-monospace, monospace; }
+    .preview img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .3s ease; }
+    .preview:hover img { transform: scale(1.015); }
+
     /* ---------- About / timeline ---------- */
     .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; }
     .about-text p { color: #33363b; margin-bottom: 16px; }
@@ -175,6 +182,10 @@
 
         <!-- PetWell -->
         <article class="project">
+          <a class="preview" href="https://petwell-zern.vercel.app" target="_blank" rel="noopener" aria-label="Open PetWell">
+            <div class="bar"><span></span><span></span><span></span><em>petwell-zern.vercel.app</em></div>
+            <img src="assets/petwell.jpg" alt="PetWell — home page" width="1200" height="750" loading="lazy">
+          </a>
           <div class="project-head">
             <h3>PetWell</h3>
             <span class="kind">Solo project · Pet health records &amp; vet appointments</span>
@@ -218,6 +229,10 @@
 
         <!-- Bloom -->
         <article class="project">
+          <a class="preview" href="https://bloom-eight-xi.vercel.app" target="_blank" rel="noopener" aria-label="Open Bloom">
+            <div class="bar"><span></span><span></span><span></span><em>bloom-eight-xi.vercel.app</em></div>
+            <img src="assets/bloom.jpg" alt="Bloom — home page" width="1200" height="750" loading="lazy">
+          </a>
           <div class="project-head">
             <h3>Bloom</h3>
             <span class="kind">Solo project · Personal wellness &amp; habit tracker</span>
@@ -242,6 +257,10 @@
 
         <!-- AUM -->
         <article class="project">
+          <a class="preview" href="https://aum-manage-stock.vercel.app/" target="_blank" rel="noopener" aria-label="Open AumStocks">
+            <div class="bar"><span></span><span></span><span></span><em>aum-manage-stock.vercel.app</em></div>
+            <img src="assets/aumstocks.jpg" alt="AumStocks — home page" width="1200" height="750" loading="lazy">
+          </a>
           <div class="project-head">
             <h3>AumStocks</h3>
             <span class="kind">Team project · Team of 5 · Stock management for retail shops</span>
