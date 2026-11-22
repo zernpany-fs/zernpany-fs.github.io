@@ -25,7 +25,7 @@
       --line-strong: #d6d3cc;
       --mark: #cfe6dd;
       --header: rgba(250, 250, 248, 0.88);
-      --glow: rgba(29, 92, 77, .10);
+      --glow: rgba(56, 170, 135, .15);
       --band: #0f2a23;
       --radius: 12px;
       --max: 920px;
@@ -34,7 +34,7 @@
       --bg: #0e1110; --surface: #151918; --ink: #ecebe7; --muted: #959b98; --line: #252a28;
       --accent: #5cc2a5; --accent-soft: rgba(92, 194, 165, .12); --text2: #c4c8c5; --chip: #1d2220;
       --line-strong: #39403d; --mark: rgba(92, 194, 165, .30); --header: rgba(14, 17, 16, .85);
-      --glow: rgba(92, 194, 165, .10); --band: #0a1f1a;
+      --glow: rgba(92, 194, 165, .12); --band: #0a1f1a;
       color-scheme: dark;
     }
     body { transition: background .35s ease, color .35s ease; }
@@ -275,9 +275,11 @@
     .role .caret { display: inline-block; width: 2px; height: 1em; background: var(--accent); margin-left: 3px; vertical-align: -0.12em; animation: blink 1s steps(1) infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* cursor spotlight behind hero */
-    .spot { position: absolute; inset: 0 -40vw; pointer-events: none; z-index: -1;
-      background: radial-gradient(420px circle at var(--mx, 30%) var(--my, 40%), var(--glow), transparent 70%); transition: background .2s; }
+    /* cursor glow that follows the mouse across the whole page */
+    .cursor-glow { position: fixed; inset: 0; pointer-events: none; z-index: 5; opacity: 0; transition: opacity .4s ease;
+      background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), var(--glow), transparent 70%); }
+    .cursor-glow.on { opacity: 1; }
+    @media (hover: none) { .cursor-glow { display: none; } }
 
     /* buttons */
     .btn { transition: border-color .15s, background .15s, transform .2s ease, box-shadow .2s ease; }
@@ -372,7 +374,6 @@
 };
 <span class="c">// ✓ ready to start</span></code><span class="cc-caret" aria-hidden="true"></span></pre>
       </figure>
-      <div class="spot" aria-hidden="true"></div>
     </div>
 
     <!-- ===== Stats ===== -->
@@ -640,6 +641,7 @@
     <div class="wrap">© 2026 Nopparuth Panyanithiwat · Built with plain HTML &amp; CSS</div>
   </footer>
 
+  <div class="cursor-glow" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"></div>
   <script>
   (function () {
@@ -751,13 +753,13 @@
 
     if (reduce) return;
 
-    // Cursor spotlight in the hero
-    var hero = document.querySelector('.hero'), spot = document.querySelector('.spot');
-    if (hero && spot) hero.addEventListener('mousemove', function (e) {
-      var r = spot.getBoundingClientRect();
-      spot.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      spot.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
+    // Green glow follows the mouse everywhere on the page
+    var glow = document.querySelector('.cursor-glow'), gx = 0, gy = 0, gq = false;
+    window.addEventListener('mousemove', function (e) {
+      gx = e.clientX; gy = e.clientY; glow.classList.add('on');
+      if (!gq) { gq = true; requestAnimationFrame(function () { glow.style.setProperty('--mx', gx + 'px'); glow.style.setProperty('--my', gy + 'px'); gq = false; }); }
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { glow.classList.remove('on'); });
 
     // 3D tilt on project previews
     document.querySelectorAll('.tilt').forEach(function (card) {
