@@ -377,6 +377,36 @@
       .stat:nth-child(n+3) { border-top: var(--bw) solid var(--ink); }
     }
 
+
+    /* ---------- Wider content ---------- */
+    :root { --max: 1120px; }
+    .hero { grid-template-columns: minmax(0, 1fr) 420px; gap: 56px; }
+    .lead { max-width: 640px; }
+
+    /* ---------- Skills: one bordered table instead of many boxes ---------- */
+    .bento { display: block; border: var(--bw) solid var(--ink); background: var(--surface); box-shadow: var(--shadow); }
+    .skill-card, .skill-card:hover { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline;
+      border: none; border-bottom: 1px solid var(--line); box-shadow: none; padding: 20px 28px; }
+    .skill-card:last-child { border-bottom: none; }
+    .sc-wide { grid-column: auto; }
+    .sc-head { gap: 0; }
+    .sc-icon { display: none; }
+    .sc-head h3 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; }
+    .sc-head p { margin: 0; color: var(--text2); font-size: 15px; }
+    .sc-text .sc-head, .sc-text .sc-head > div { display: contents; }
+    .chips { margin: 0; gap: 0; }
+    .chip, .bento.filtering .chip { border: none; background: none; padding: 0; font-size: 15px; font-weight: 500; color: var(--text2); }
+    .chip:not(:last-child)::after { content: "·"; display: inline-block; margin: 0 10px; color: var(--muted); font-weight: 400; opacity: 1; }
+    .bento.filtering .chip { opacity: .3; filter: none; }
+    .bento.filtering .chip.hit { opacity: 1; background: none; color: var(--accent); font-weight: 700; border: none;
+      text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+    .bento.filtering .chip.hit::after { text-decoration: none; }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .skill-card, .skill-card:hover { grid-template-columns: 1fr; gap: 8px; padding: 18px 20px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .js .reveal { opacity: 1; transform: none; }
