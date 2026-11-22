@@ -407,6 +407,18 @@
       .skill-card, .skill-card:hover { grid-template-columns: 1fr; gap: 8px; padding: 18px 20px; }
     }
 
+
+    /* ---------- Back to top ---------- */
+    .to-top { position: fixed; right: 24px; bottom: 24px; z-index: 15; width: 48px; height: 48px; display: grid; place-items: center;
+      background: var(--surface); color: var(--ink); border: var(--bw) solid var(--ink); border-radius: 0; box-shadow: var(--shadow-sm);
+      cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
+    .to-top.show { opacity: 1; visibility: visible; transform: none; }
+    .to-top:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); background: var(--accent); color: #fff; }
+    .to-top:active { transform: translate(3px, 3px); box-shadow: none; }
+    .to-top:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .to-top svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: square; stroke-linejoin: miter; }
+    @media (max-width: 860px) { .to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; } }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .js .reveal { opacity: 1; transform: none; }
@@ -735,6 +747,7 @@
   </footer>
 
   <div class="cursor-glow" aria-hidden="true"></div>
+  <button class="to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
   (function () {
     var root = document.documentElement; root.classList.add('js');
@@ -764,12 +777,14 @@
     } else { targets.forEach(function (el) { el.classList.add('in'); }); }
 
     // Progress bar, header shadow, active nav link
-    var header = document.querySelector('header');
+    var header = document.querySelector('header'), toTop = document.querySelector('.to-top');
+    toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); toTop.blur(); });
     var links = Array.prototype.slice.call(document.querySelectorAll('nav ul a'));
     var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
     function onScroll() {
       var h = document.documentElement;
       header.classList.toggle('scrolled', h.scrollTop > 8);
+      toTop.classList.toggle('show', h.scrollTop > 600);
       var current = -1;
       sections.forEach(function (sec, i) { if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.4) current = i; });
       links.forEach(function (a, i) { a.classList.toggle('active', i === current); });
