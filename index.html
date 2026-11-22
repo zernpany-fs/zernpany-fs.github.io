@@ -27,6 +27,7 @@
       --header: rgba(250, 250, 250, 0.88);
       --glow: rgba(37, 99, 235, .10);
       --band: #18181B;
+      --ok: #16A34A;
       --radius: 12px;
       --max: 920px;
     }
@@ -34,7 +35,7 @@
       --bg: #09090B; --surface: #18181B; --ink: #FAFAFA; --muted: #A1A1AA; --line: #27272A;
       --accent: #60A5FA; --accent-soft: rgba(96, 165, 250, .12); --text2: #D4D4D8; --chip: #27272A;
       --line-strong: #3F3F46; --mark: rgba(96, 165, 250, .32); --header: rgba(9, 9, 11, .85);
-      --glow: rgba(96, 165, 250, .10); --band: #111827;
+      --glow: rgba(96, 165, 250, .10); --band: #111827; --ok: #4ADE80;
       color-scheme: dark;
     }
     body { transition: background .35s ease, color .35s ease; }
@@ -315,7 +316,7 @@
 
     /* Status pill becomes a tag */
     .status { border-radius: 0; border: var(--bw) solid var(--ink); background: var(--surface); color: var(--ink); font-weight: 600; }
-    .status::before { border-radius: 0; background: var(--accent); }
+    .status::before { border-radius: 0; background: var(--ok); }
 
     /* Buttons */
     .btn { border-radius: 0; border: var(--bw) solid var(--ink); background: var(--surface); color: var(--ink);
