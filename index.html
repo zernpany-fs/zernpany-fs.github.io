@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nopparuth Panyanithiwat (Zern) · Full-Stack Developer</title>
-  <meta name="description" content="Portfolio of Nopparuth Panyanithiwat (Zern), junior full-stack developer in Bangkok. TypeScript, Next.js, NestJS, PostgreSQL, Prisma.">
+  <title>Nopparuth Panyanithiwat (Zern) · Full-Stack Developer &amp; Business Analyst</title>
+  <meta name="description" content="Portfolio of Nopparuth Panyanithiwat (Zern), junior full-stack developer and business analyst in Bangkok. Requirements, user stories and ERDs; TypeScript, Next.js, NestJS, PostgreSQL.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -419,6 +419,19 @@
     .to-top svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: square; stroke-linejoin: miter; }
     @media (max-width: 860px) { .to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; } }
 
+
+    /* ---------- Photo slot in Background ---------- */
+    .about-grid { grid-template-columns: 240px minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+    .photo { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; display: grid; place-items: center;
+      background: var(--accent-soft); border: var(--bw) solid var(--ink); box-shadow: var(--shadow); }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo-mono { font-family: "Archivo", system-ui, sans-serif; font-weight: 800; font-size: 72px; letter-spacing: -0.04em; color: var(--accent); }
+    .links.docs { margin-top: 12px; font-size: 13.5px; }
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .photo { max-width: 220px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .js .reveal { opacity: 1; transform: none; }
@@ -450,13 +463,13 @@
     <!-- ===== Hero ===== -->
     <div class="hero wrap">
       <div class="hero-text">
-      <div class="status">Open to junior full-stack roles · Bangkok · can start now</div>
+      <div class="status">Open to junior full-stack developer and business analyst roles · Bangkok · can start now</div>
       <h1>Nopparuth Panyanithiwat</h1>
-      <p class="role">Full-Stack Developer · Next.js, NestJS, PostgreSQL</p>
+      <p class="role">Full-Stack Developer · Business Analyst</p>
       <p class="lead">
-        Before software I worked in marketing and sales. In 2026 I finished a six-month full-stack
-        bootcamp, and I now build web apps with Next.js, NestJS and PostgreSQL, with role-based
-        access and automated tests.
+        I started in marketing and sales, running client workshops and user acceptance testing.
+        In 2026 I finished a six-month full-stack bootcamp. I can take a feature from requirements
+        and user stories to a tested web app built with Next.js, NestJS and PostgreSQL.
       </p>
       <div class="actions">
         <a class="btn primary" href="#work">See my work</a>
@@ -467,7 +480,7 @@
       <figure class="code-card" aria-label="A short profile written as code">
         <div class="cc-bar"><span></span><span></span><span></span><em>zern.ts</em></div>
 <pre class="cc-body"><code id="cc-code"><span class="k">const</span> <span class="v">zern</span> = {
-  <span class="p">role</span>: <span class="s">"Full-Stack Developer"</span>,
+  <span class="p">role</span>: [<span class="s">"Full-Stack Dev"</span>, <span class="s">"BA"</span>],
   <span class="p">based</span>: <span class="s">"Bangkok, TH"</span>,
   <span class="p">stack</span>: [<span class="s">"Next.js"</span>, <span class="s">"NestJS"</span>,
           <span class="s">"PostgreSQL"</span>],
@@ -527,9 +540,10 @@
             </div>
             <div>
               <h4>How I worked</h4>
-              <p>Wrote the spec, ERD, endpoint list and a decision log (54 decisions) first, built
-                section by section with AI from those documents, then checked every flow myself as
-                both owner and staff. 88 Vitest tests run against a real database.</p>
+              <p>Before coding I wrote user stories, an ERD, an endpoint list, a change request with an
+                impact analysis and a decision log (54 decisions). I built from those documents section
+                by section with AI, then tested every flow as both owner and staff. 88 Vitest tests run
+                against a real database.</p>
             </div>
           </div>
           <div class="tags">
@@ -540,6 +554,15 @@
             <a href="https://petwell-zern.vercel.app" target="_blank" rel="noopener">Live demo ↗</a>
             <a href="https://github.com/zernpany-fs/PetWell" target="_blank" rel="noopener">Source code ↗</a>
             <span class="note">Try the clinic side: vet1@test.com / pass123</span>
+          </div>
+          <div class="links docs">
+            <span class="note">Analysis documents:</span>
+            <a href="https://github.com/zernpany-fs/PetWell/blob/main/docs/v2/PetWell_User_Stories_Access_Control.md" target="_blank" rel="noopener">User stories ↗</a>
+            <a href="https://github.com/zernpany-fs/PetWell/blob/main/docs/v2/PetWell_Change_Request.md" target="_blank" rel="noopener">Change request ↗</a>
+            <a href="https://github.com/zernpany-fs/PetWell/blob/main/docs/v2/PetWell_Impact_Analysis.md" target="_blank" rel="noopener">Impact analysis ↗</a>
+            <a href="https://github.com/zernpany-fs/PetWell/blob/main/docs/v2/PetWell_Decision_Log.md" target="_blank" rel="noopener">Decision log ↗</a>
+            <a href="https://github.com/zernpany-fs/PetWell/blob/main/docs/PetWell_ERD.svg" target="_blank" rel="noopener">ERD ↗</a>
+            <a href="https://github.com/zernpany-fs/PetWell/blob/main/docs/v2/PetWell_Appointment_Grant_Flow.svg" target="_blank" rel="noopener">Flowchart ↗</a>
           </div>
         </article>
 
@@ -612,6 +635,10 @@
       <div class="wrap">
         <h2>Background</h2>
         <div class="about-grid">
+          <figure class="photo" aria-label="Photo of Nopparuth Panyanithiwat">
+            <span class="photo-mono" aria-hidden="true">NP</span>
+            <!-- Photo goes here: <img src="assets/zern.jpg" alt="Nopparuth Panyanithiwat (Zern)"> -->
+          </figure>
           <div class="about-text">
             <p>I studied Business Economics and then worked in marketing, sales and logistics. At
               Funcrowd I ran client workshops and user acceptance testing, so most of my work was
@@ -619,8 +646,8 @@
             <p>In 2026 I moved into software through a six-month full-stack bootcamp. I still start
               the same way: requirements and the data model first, then the code, then testing it
               as a real user would.</p>
-            <p>I'm looking for a junior full-stack role where I can work on real features and get
-              code review.</p>
+            <p>I'm looking for a junior role as a full-stack developer or a business analyst, working on
+              real features with a team.</p>
           </div>
           <ol class="timeline">
             <li>
@@ -711,6 +738,9 @@
               <li class="chip" data-p="p">Requirements</li>
               <li class="chip" data-p="p">User stories</li>
               <li class="chip" data-p="p">Flowcharts</li>
+              <li class="chip" data-p="p">Change requests</li>
+              <li class="chip" data-p="p">Impact analysis</li>
+              <li class="chip" data-p="p">Decision logs</li>
               <li class="chip" data-p="">Wireframes</li>
               <li class="chip" data-p="">UAT</li>
             </ul>
@@ -726,8 +756,8 @@
     <section id="contact" class="contact">
       <div class="wrap">
         <h2>Ready when you are.</h2>
-        <p>I can start now. I'm looking for junior full-stack roles in Bangkok, on-site, hybrid or
-          remote. Email is the fastest way to reach me.</p>
+        <p>I can start now. I'm looking for junior full-stack developer or business analyst roles in
+          Bangkok, on-site, hybrid or remote. Email is the fastest way to reach me.</p>
         <div class="mail-row">
           <a class="mail-big" href="mailto:zern.pany@gmail.com">zern.pany@gmail.com</a>
           <button class="copy-btn" type="button" data-copy="zern.pany@gmail.com">Copy</button>
