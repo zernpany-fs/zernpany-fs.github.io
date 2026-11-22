@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nopparuth Panyanithiwat (Zern) · Full-Stack Developer &amp; Business Analyst</title>
   <meta name="description" content="Portfolio of Nopparuth Panyanithiwat (Zern), junior full-stack developer and business analyst in Bangkok. Requirements, user stories and ERDs; TypeScript, Next.js, NestJS, PostgreSQL.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#09090B">
+  <link rel="canonical" href="https://zernpany-fs.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zernpany-fs.github.io/">
+  <meta property="og:title" content="Nopparuth Panyanithiwat (Zern) · Full-Stack Developer &amp; Business Analyst">
+  <meta property="og:description" content="Junior full-stack developer and business analyst in Bangkok. Requirements, user stories and ERDs; web apps with Next.js, NestJS and PostgreSQL.">
+  <meta property="og:image" content="https://zernpany-fs.github.io/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nopparuth Panyanithiwat, Full-Stack Developer and Business Analyst">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zernpany-fs.github.io/assets/og.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -433,6 +447,16 @@
       .photo { max-width: 220px; }
     }
 
+
+    /* ---------- Keyboard focus ---------- */
+    :focus { outline: none; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .btn:focus-visible, .skill-filter button:focus-visible, .theme-toggle:focus-visible, .copy-btn:focus-visible { outline-offset: 4px; }
+    .preview:focus-visible { outline-offset: 4px; }
+    section.contact :focus-visible { outline-color: #93C5FD; }
+    .skip-link { position: absolute; left: 16px; top: -60px; z-index: 30; background: var(--accent); color: #fff; padding: 10px 16px; font-weight: 700; text-decoration: none; border: 2px solid var(--ink); }
+    .skip-link:focus { top: 12px; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .js .reveal { opacity: 1; transform: none; }
@@ -442,6 +466,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#work">Skip to projects</a>
 
   <header>
     <nav class="wrap">
